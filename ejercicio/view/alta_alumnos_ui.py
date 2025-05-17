@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'alta_alumnos.ui'
+## Form generated from reading UI file 'alta_alumnosYibCjW.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.9.0
 ##
@@ -93,11 +93,11 @@ class Ui_alumnos(object):
 
         self.formLayout_2.setWidget(2, QFormLayout.ItemRole.FieldRole, self.vcTxtDni)
 
-        self.vcLblDni_4 = QLabel(alumnos)
-        self.vcLblDni_4.setObjectName(u"vcLblDni_4")
-        self.vcLblDni_4.setFont(font1)
+        self.vcLblFechaNac = QLabel(alumnos)
+        self.vcLblFechaNac.setObjectName(u"vcLblFechaNac")
+        self.vcLblFechaNac.setFont(font1)
 
-        self.formLayout_2.setWidget(3, QFormLayout.ItemRole.LabelRole, self.vcLblDni_4)
+        self.formLayout_2.setWidget(3, QFormLayout.ItemRole.LabelRole, self.vcLblFechaNac)
 
         self.vcDateEdit = QDateEdit(alumnos)
         self.vcDateEdit.setObjectName(u"vcDateEdit")
@@ -105,11 +105,11 @@ class Ui_alumnos(object):
 
         self.formLayout_2.setWidget(3, QFormLayout.ItemRole.FieldRole, self.vcDateEdit)
 
-        self.vcLblDni_3 = QLabel(alumnos)
-        self.vcLblDni_3.setObjectName(u"vcLblDni_3")
-        self.vcLblDni_3.setFont(font1)
+        self.vcLblPoblacion = QLabel(alumnos)
+        self.vcLblPoblacion.setObjectName(u"vcLblPoblacion")
+        self.vcLblPoblacion.setFont(font1)
 
-        self.formLayout_2.setWidget(4, QFormLayout.ItemRole.LabelRole, self.vcLblDni_3)
+        self.formLayout_2.setWidget(4, QFormLayout.ItemRole.LabelRole, self.vcLblPoblacion)
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
@@ -149,9 +149,9 @@ class Ui_alumnos(object):
 
         self.formLayout_2.setWidget(5, QFormLayout.ItemRole.FieldRole, self.vcTxtTutor)
 
-        self.verticalSpacer_5 = QSpacerItem(456, 13, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.vcverticalSpacer_5 = QSpacerItem(456, 13, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.formLayout_2.setItem(7, QFormLayout.ItemRole.FieldRole, self.verticalSpacer_5)
+        self.formLayout_2.setItem(7, QFormLayout.ItemRole.FieldRole, self.vcverticalSpacer_5)
 
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
@@ -329,8 +329,8 @@ class Ui_alumnos(object):
         self.vcLblNombre.setText(QCoreApplication.translate("alumnos", u"Nombre", None))
         self.vcLblApell.setText(QCoreApplication.translate("alumnos", u"Apellidos", None))
         self.vcLblDni.setText(QCoreApplication.translate("alumnos", u"DNI", None))
-        self.vcLblDni_4.setText(QCoreApplication.translate("alumnos", u"Fec. Nacimiento", None))
-        self.vcLblDni_3.setText(QCoreApplication.translate("alumnos", u"Poblaci\u00f3n", None))
+        self.vcLblFechaNac.setText(QCoreApplication.translate("alumnos", u"Fec. Nacimiento", None))
+        self.vcLblPoblacion.setText(QCoreApplication.translate("alumnos", u"Poblaci\u00f3n", None))
         self.vcLblDni_2.setText(QCoreApplication.translate("alumnos", u"Distancia hasta el centro (Km)", None))
         self.vcLblTutor.setText(QCoreApplication.translate("alumnos", u"Tutor", None))
         self.vclblModalidad.setText(QCoreApplication.translate("alumnos", u"Modalidad", None))
@@ -341,7 +341,7 @@ class Ui_alumnos(object):
         self.vcChkBoDanza.setText(QCoreApplication.translate("alumnos", u"Danza", None))
         self.vcChkBoxFtbol.setText(QCoreApplication.translate("alumnos", u"F\u00fatbol", None))
         self.vcLblTlf.setText(QCoreApplication.translate("alumnos", u"Tlf.", None))
-        self.VcBtnCancelar.setText(QCoreApplication.translate("alumnos", u"Limpiar", None))
-        self.vcBtnGuardar.setText(QCoreApplication.translate("alumnos", u"Validar", None))
+        self.VcBtnCancelar.setText(QCoreApplication.translate("alumnos", u"Eliminar", None))
+        self.vcBtnGuardar.setText(QCoreApplication.translate("alumnos", u"Confirmar", None))
     # retranslateUi
 

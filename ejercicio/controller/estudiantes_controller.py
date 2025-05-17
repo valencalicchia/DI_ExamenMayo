@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QAbstractItemView, QDialog, QHeaderView
 from PySide6.QtGui import QStandardItem, QStandardItemModel
 from PySide6.QtCore import QModelIndex
 
-from view.clientes_ui import Ui_Estudiantes
+from view.estudiantes_ui import Ui_Estudiantes
 from model.datos import EstudiantesDAO, PoblacionesDAO
 from controller.estudiante_create_edit_controller import EstudianteController
 from util.message_box import MessageBox
@@ -59,46 +59,56 @@ class EstudiantesController(QDialog):
         for poblacion in poblaciones:
             self.ui.cboPoblacion.addItem(poblacion.nombre, poblacion.id_poblacion)
 
-    def config_table(self, estudiantes=None):
+    def config_table(self):
         """
         Configura la tabla que muestra los estudiantes.
-        
-        :param estudiantes: Lista opcional de estudiantes a mostrar. Si es None, carga todos los estudiantes.
         """
-        self.dao_estudiante = EstudiantesDAO()  # Crea la instancia de acceso a los datos de los estudiantes
-        self.estudiante_seleccionado = None  # Inicializa el estudiante seleccionado
-        
-        headers = ["Nombre", "Apellidos", "DNI", "Población", "Modalidad", "Usuario", "Id"]  # Encabezados
-
-        # Obtiene la lista de estudiantes desde la base de datos si no se proporciona
-        if estudiantes is None:
-            estudiantes = self.dao_estudiante.get_all()
-
-        # Crea un modelo de tabla con el número de filas y columnas correspondientes
-        self.model = QStandardItemModel(len(estudiantes), len(headers))
-        self.model.setHorizontalHeaderLabels(headers)  # Configura los encabezados de las columnas
-
-        # Rellena la tabla con los datos de los estudiantes
-        for row, estudiante in enumerate(estudiantes):
-            poblacion_dao = PoblacionesDAO()
-            poblacion = poblacion_dao.get(estudiante.id_poblacion)
+        try:
+            self.dao_estudiante = EstudiantesDAO()
+            self.estudiante_seleccionado = None
             
-            self.model.setItem(row, 0, QStandardItem(estudiante.nombre))  # Columna "Nombre"
-            self.model.setItem(row, 1, QStandardItem(estudiante.apellidos))  # Columna "Apellidos"
-            self.model.setItem(row, 2, QStandardItem(estudiante.dni))  # Columna "DNI"
-            self.model.setItem(row, 3, QStandardItem(poblacion.nombre if poblacion else ""))  # Columna "Población"
-            self.model.setItem(row, 4, QStandardItem(estudiante.modalidad))  # Columna "Modalidad"
-            self.model.setItem(row, 5, QStandardItem(estudiante.usuario))  # Columna "Usuario"
-            self.model.setItem(row, 6, QStandardItem(str(estudiante.id_estudiante)))  # Columna "Id" (oculta)
+            headers = ["Nombre", "Apellidos", "DNI", "Población", "Modalidad", "Usuario"]
+            
+            # Obtener la lista de estudiantes
+            estudiantes = self.dao_estudiante.get_all()
+            
+            # Si get_all() devuelve un solo estudiante (no lista), lo convertimos a lista
+            if estudiantes and not isinstance(estudiantes, list):
+                estudiantes = [estudiantes]
+            
+            # Si no hay estudiantes, usamos lista vacía
+            if not estudiantes:
+                estudiantes = []
+            
+            # Crear modelo con el número de filas igual a la cantidad de estudiantes
+            self.model = QStandardItemModel(len(estudiantes), len(headers))
+            self.model.setHorizontalHeaderLabels(headers)
 
-        # Configura el modelo en la tabla de la UI
-        self.ui.vcGridEstudiantes.setModel(self.model)
-        self.ui.vcGridEstudiantes.setColumnHidden(6, True)  # Oculta la columna de "Id"
-        self.ui.vcGridEstudiantes.resizeColumnsToContents()  # Ajusta el tamaño de las columnas
-        self.ui.vcGridEstudiantes.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)  # Estira columnas
-        self.ui.vcGridEstudiantes.setSelectionBehavior(QAbstractItemView.SelectRows)  # Permite seleccionar filas
-        self.ui.vcGridEstudiantes.setSelectionMode(QAbstractItemView.SingleSelection)  # Selección única
-        self.ui.vcGridEstudiantes.setEditTriggers(QAbstractItemView.NoEditTriggers)  # Deshabilita edición
+            # Rellenar la tabla con datos
+            for row, estudiante in enumerate(estudiantes):
+                poblacion_dao = PoblacionesDAO()
+                poblacion = poblacion_dao.get(estudiante.id_poblacion)
+                
+                self.model.setItem(row, 0, QStandardItem(estudiante.nombre))
+                self.model.setItem(row, 1, QStandardItem(estudiante.apellidos))
+                self.model.setItem(row, 2, QStandardItem(estudiante.dni))
+                self.model.setItem(row, 3, QStandardItem(poblacion.nombre if poblacion else ""))
+                self.model.setItem(row, 4, QStandardItem(estudiante.modalidad))
+                self.model.setItem(row, 5, QStandardItem(estudiante.usuario))
+                # Guardamos el ID en la columna oculta
+                self.model.setItem(row, 6, QStandardItem(str(estudiante.id_estudiante)))
+
+            # Configurar la vista de tabla
+            self.ui.vcGridEstudiantes.setModel(self.model)
+            self.ui.vcGridEstudiantes.setColumnHidden(6, True)  # Ocultamos la columna ID
+            self.ui.vcGridEstudiantes.resizeColumnsToContents()
+            self.ui.vcGridEstudiantes.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+            self.ui.vcGridEstudiantes.setSelectionBehavior(QAbstractItemView.SelectRows)
+            self.ui.vcGridEstudiantes.setSelectionMode(QAbstractItemView.SingleSelection)
+            self.ui.vcGridEstudiantes.setEditTriggers(QAbstractItemView.NoEditTriggers)
+            
+        except Exception as e:
+            MessageBox("No se pudo cargar la tabla de estudiantes: {str(e)}", "error").show()
 
     def open_modal(self, nuevo: bool):
         """

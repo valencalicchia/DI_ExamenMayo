@@ -84,8 +84,8 @@ INSERT INTO estudiantes (nombre, apellidos, dni, fecha_nacimiento, id_poblacion,
 ('Laura', 'Fernández Gómez', '11223344C', '2002-11-30', 3, 1.2, 'Presencial', 'lfernan', NULL, NULL),
 ('Pedro', 'Sánchez Díaz', '22334455D', '2008-05-10', 4, 8.7, 'A Distancia', 'psanche', 'Luisa Díaz Méndez', '633445566'),
 ('Ana', 'Rodríguez Pérez', '33445566E', '2004-09-18', 5, 3.3, 'Presencial', 'arodri', NULL, NULL),
-('Javier', 'López Martín', '44556677F', '2012-12-05', 6, 12.0, 'A Distancia', 'jlopez', 'Marta Martín García', '644556677'),
-('Sofía', 'Gómez Hernández', '55667788G', '2003-04-25', 7, 0.5, 'Presencial', 'sherna', NULL, NULL),
+('Javier', 'López Martín', '44556677F', '2012-12-05', 2, 12.0, 'A Distancia', 'jlopez', 'Marta Martín García', '644556677'),
+('Sofía', 'Gómez Hernández', '55667788G', '2003-04-25', 5, 0.5, 'Presencial', 'sherna', NULL, NULL),
 ('David', 'Díaz Jiménez', '66778899H', '2007-08-12', 1, 4.2, 'A Distancia', 'ddiaz', 'Elena Jiménez Ruiz', '655667788');
 
 -- Insertar relaciones entre estudiantes y actividades

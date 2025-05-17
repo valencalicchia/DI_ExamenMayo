@@ -21,7 +21,7 @@ def login(app):
     login_controler = LoginController(login_window)
     login_window.show()
 
-    # Inicia el ciclo de eventos de la aplicación Qt (esto hace que la ventana se muestre y se quede activa).
+    # Inicia el ciclo de evsentos de la aplicación Qt (esto hace que la ventana se muestre y se quede activa).
     app.exec()
 
     return login_controler.bLogado
@@ -39,6 +39,7 @@ def init_app(app):
 
     main_window = EstudiantesController()
     main_window.setModal(True)
+    main_window.show()
 
     # Inicia el ciclo de eventos de la aplicación Qt, lo que permite que la ventana se mantenga abierta.
     app.exec()
