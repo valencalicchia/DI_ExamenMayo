@@ -1,0 +1,28 @@
+services:
+  mysql:
+    build: .
+    container_name: mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: EXAMEN2DI
+      TZ: Europe/Madrid
+      # Configuración adicional para MySQL
+      MYSQL_INITDB_SKIP_TZINFO: 1  # Omite la carga de zonas horarias (elimina warnings)
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 20s
+      retries: 10
+    command: [
+      "--character-set-server=utf8mb4",
+      "--collation-server=utf8mb4_spanish2_ci",
+      "--max-allowed-packet=64M",
+      "--skip-log-bin"
+    ]
+
+volumes:
+  mysql_data:
